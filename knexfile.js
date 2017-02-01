@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: 'postgres://localhost/Bandwagon'
+    connection: 'postgres://localhost/bandwagon'
   },
 
   staging: {
@@ -22,7 +22,7 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'Bandwagon',
+      database: 'bandwagon',
       user:     'username'
     },
     migrations: {

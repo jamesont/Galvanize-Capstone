@@ -18,8 +18,12 @@
   font-size: large;
 }
 
-body {
-  background-color: "#031927";
+body, html {
+  background-color: #031927;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
 }
 
 @keyframes App-logo-spin {

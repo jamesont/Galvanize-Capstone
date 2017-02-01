@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-// import logo from './src/logo.svg';
-// import './App.css';
-// require('babel/polyfill');
+import '../App.css';
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-  ///"Component state" state (localized)
-    this.state = { term: '' };
-    console.log(this.term);
+    this.state = {
+      term: ''
+    }
   }
 
   render() {
@@ -16,16 +14,14 @@ class SearchBar extends Component {
       <div className="search-bar">
         <input
           value={this.state.term}
+          onChange={event => this.setState({ term: event.target.value })}
           placeholder="   Search for an artist"
-          onChange={event => this.onInputChange(event.target.value)} />
+        />
       </div>
     );
   }
-  //
-  onInputChange(term) {
-    this.setState({term});
-    this.props.onSearchTermChange(term);
-  }
+
 }
 
 export default SearchBar;
+//state is an object that reacts to user events
