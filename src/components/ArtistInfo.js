@@ -33,21 +33,21 @@ class ArtistInfo extends Component{
        return axios.get(spotifyDataUrl)
     }).then( data => {
 
-      console.log(data);
+      const ddt = data.data.tracks
 
-      let albumNames = data.data.tracks.map( (album) => {
+      let albumNames = ddt.map( (album) => {
         return album.album.name
       })
-      console.log(albumNames);
-      let tracks = data.data.tracks.map( (track) => {
+
+      let tracks = ddt.map( (track) => {
         return track.name
       })
-console.log(tracks)
-      let songUrls = data.data.tracks.map( (song) => {
+
+      let songUrls = ddt.map( (song) => {
         return song.preview_url
       })
-console.log(songUrls)
-      let nestedImagesArray = data.data.tracks.map( (album) => {
+
+      let nestedImagesArray = ddt.map( (album) => {
         return album.album.images
       })
 
@@ -56,7 +56,7 @@ console.log(songUrls)
       })
 
       this.setState({
-        artistName: data.data.tracks[0].artists[0].name,
+        artistName: ddt[0].artists[0].name,
         albums: albumNames,
         tracks: tracks,
         songUrls: songUrls,
@@ -68,26 +68,12 @@ console.log(songUrls)
   render(){
     return(
       <div>
-        <div>
-          <div className="form-control col-xs-3">
           {this.state.artistId}
-          </div>
-          <div className="form-control col-xs-3">
           {this.state.artistName}
-          </div>
-          <div className="form-control col-xs-3">
           {this.state.albums}
-          </div>
-          <div className="form-control col-xs-3">
           {this.state.tracks}
-          </div>
-          <div className="form-control col-xs-3">
           {this.state.songUrls}
-          </div>
-          <div className="form-control col-xs-3">
           {this.state.imagesArray}
-          </div>
-        </div>
       </div>
     )
   }
