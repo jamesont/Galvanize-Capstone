@@ -23,19 +23,19 @@ class CreateNewUser extends Component{
 
   addFirstName(e){
     this.setState({
-      firstName: e.target.value,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      password: this.state.password
+      firstName: e.target.value
+      // lastName: this.state.lastName,
+      // email: this.state.email,
+      // password: this.state.password
     })
   }
 
   addLastName(e){
     this.setState({
-      firstName: this.target.value,
-      lastName: e.target.value,
-      email: this.state.email,
-      password: this.state.password
+      // firstName: this.target.value,
+      lastName: e.target.value
+      // email: this.state.email,
+      // password: this.state.password
     })
   }
 
