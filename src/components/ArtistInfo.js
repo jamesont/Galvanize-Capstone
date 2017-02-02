@@ -12,13 +12,11 @@ class ArtistInfo extends Component{
     this.state = {
       artistId: ''
     }
-    this.getArtistId = this.getArtistId.bind(this)
   }
 
   getArtistId(url){
     const request = axios.get(url)
     request.then((data) => {
-      console.log(data);
       this.setState({
         artistId: data.data.artists.items[0].id
       })
