@@ -1,16 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import SearchBar from './components/SearchBar';
-import LoginForm from './components/LoginForm';
-import CreateNewUser from './components/CreateNewUser';
-import ArtistInfo from './components/ArtistInfo';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import SearchBar from './components/SearchBar'
+import LoginForm from './components/LoginForm'
+import CreateNewUser from './components/CreateNewUser'
+import ArtistInfo from './components/ArtistInfo'
+
+import './App.css'
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      searchBarClicked: false
+      // ifNoAccount: true
     }
   }
 
@@ -19,7 +22,7 @@ class App extends Component {
   }
 
   clickedTrue(){
-    this.setState({ clicked: true })
+    this.setState({ searchBarClicked: true })
   }
 
   render() {
@@ -31,19 +34,11 @@ class App extends Component {
 	      </div>
           { this.state.loggedIn && <SearchBar clickedTrue={this.clickedTrue.bind(this)}/> }
 		      { !this.state.loggedIn && <LoginForm loginTrue={this.loginTrue.bind(this)}/> }
-			    {/* <CreateNewUser/>
-          <ArtistInfo/> */}
+			    { !this.state.loggedIn && <CreateNewUser/> }
+          <ArtistInfo/>
       </div>
-    );
+    )
   }
 }
 
-export default App;
-
-// renderLoginForm(){
-//   if(this.state.loggedIn)
-//     return null;
-//   else {
-//     return <LoginForm/>
-//   }
-// }
+export default App
