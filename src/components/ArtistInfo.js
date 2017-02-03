@@ -10,6 +10,7 @@ class ArtistInfo extends Component{
     super(props)
 
     this.state = {
+      // songElements: ''
       artistId: '',
       artistName: '',
       genres: [],
@@ -17,63 +18,58 @@ class ArtistInfo extends Component{
       tracks: [],
       songUrls: []
     }
-
+    this.albumNames
     this.getArtistInformation.call(this, spotifyIdUrl)
   }
 
   getArtistInformation(spotifyIdUrl){
     const requestForArtistId = axios.get(spotifyIdUrl)
     requestForArtistId.then( data => {
-      // console.log('line 27', data)
-       this.setState({
-         artistId: data.data.artists.items[0].id,
-         genres: data.data.artists.items[0].genres
-       })
-       const spotifyDataUrl = `https://api.spotify.com/v1/artists/${this.state.artistId}/top-tracks?country=us`
-       return axios.get(spotifyDataUrl)
+      this.setState({
+        artistId: data.data.artists.items[0].id,
+        genres: data.data.artists.items[0].genres
+      })
+      const spotifyDataUrl = `https://api.spotify.com/v1/artists/${this.state.artistId}/top-tracks?country=us`
+      return axios.get(spotifyDataUrl)
     }).then( data => {
 
-      const ddt = data.data.tracks
+      const { tracks } = data.data
 
-      let albumNames = ddt.map( (album) => {
-        return album.album.name
-      })
-
-      let tracks = ddt.map( (track) => {
-        return track.name
-      })
-
-      let songUrls = ddt.map( (song) => {
-        return song.preview_url
-      })
-
-      let nestedImagesArray = ddt.map( (album) => {
-        return album.album.images
-      })
-
-      let imagesArray = nestedImagesArray.map( (image) => {
-        return image
-      })
+      .push(this.albumNames = tracks.map((album) => <li>{album.album.name}</li> ))
+      .push(this.theTracks = tracks.map((track) =>  <li>{track.name}</li> ))
+      .push(this.songUrls = tracks.map((song) => <li>{song.preview_url}</li> ))
+      .push(this.nestedImagesArray = tracks.map((album) => <li>{album.album.images}</li> ))
+      .push(this.imagesArray = nestedImagesArray.map((image) => <li>{image}</li> ))
 
       this.setState({
-        artistName: ddt[0].artists[0].name,
+        artistName: tracks[0].artists[0].name,
         albums: albumNames,
-        tracks: tracks,
+        tracks: theTracks,
         songUrls: songUrls,
         images: imagesArray
       })
     })
-  }
 
+  }
+  //=============end of getArtistInformation function==========================
   render(){
     return(
       <div>
-          {this.state.artistId}
-          {this.state.artistName}
-          {this.state.albums}
-          {this.state.tracks}
-          {this.state.songUrls}
-          {this.state.imagesArray}
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              {/* <th>Artist</th>
+
+              <th>Genres</th>
+              <th>Albums</th>
+              <th>Tracks</th>
+              <th>Song Names</th> */}
+              <ul>
+                {this.albumNames}
+              </ul>
+            </tr>
+          </thead>
+        </table>
       </div>
     )
   }

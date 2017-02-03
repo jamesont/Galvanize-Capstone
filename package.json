@@ -16,10 +16,10 @@
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-google-maps": "^4.7.1",
-    "react-redux": "^4.0.0",
+    "react-redux": "^4.4.6",
     "react-router": "^2.0.1",
     "react-sparklines": "^1.6.0",
-    "redux": "^3.0.4",
+    "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
     "spotify": "^0.3.0"
   },

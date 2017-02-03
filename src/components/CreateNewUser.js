@@ -16,46 +16,12 @@ class CreateNewUser extends Component{
     this.addEmail = this.addPassword.bind(this)
   }
 
-  onSubmit(e){
-    e.preventDefault()
-    this.props.loginTrue()
-  }
+  onSubmit(e){ e.preventDefault(); this.props.loginTrue() }
 
-  addFirstName(e){
-    this.setState({
-      firstName: e.target.value
-      // lastName: this.state.lastName,
-      // email: this.state.email,
-      // password: this.state.password
-    })
-  }
-
-  addLastName(e){
-    this.setState({
-      // firstName: this.target.value,
-      lastName: e.target.value
-      // email: this.state.email,
-      // password: this.state.password
-    })
-  }
-
-  addEmail(e){
-    this.setState({
-      firstName: this.target.value,
-      lastName: this.state.lastName,
-      email: e.target.value,
-      password: this.state.password
-    })
-  }
-
-  addPassword(e){
-    this.setState({
-      firstName: this.target.value,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      password: e.target.value
-    })
-  }
+  addFirstName(e){ this.setState({ firstName: e.target.value }) }
+  addLastName(e){ this.setState({ lastName: e.target.value }) }
+  addEmail(e){ this.setState({ email: e.target.value }) }
+  addPassword(e){ this.setState({ password: e.target.value }) }
 
   render(){
       return (
