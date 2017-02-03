@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+// import ReactTable from 'react-table'
 
 // const key = '6482c833c701e11ea0e0ad3af29e89a1'
 const artist = 'metallica'
@@ -16,12 +17,14 @@ class ArtistInfo extends Component{
       genres: [],
       images: [],
       tracks: [],
-      songUrls: []
+      songUrls: [],
     }
-    this.albumNames
+
     this.getArtistInformation.call(this, spotifyIdUrl)
   }
 
+
+//==================GET ARTIST INFORMATION==================================
   getArtistInformation(spotifyIdUrl){
     const requestForArtistId = axios.get(spotifyIdUrl)
     requestForArtistId.then( data => {
@@ -35,11 +38,11 @@ class ArtistInfo extends Component{
 
       const { tracks } = data.data
 
-      .push(this.albumNames = tracks.map((album) => <li>{album.album.name}</li> ))
-      .push(this.theTracks = tracks.map((track) =>  <li>{track.name}</li> ))
-      .push(this.songUrls = tracks.map((song) => <li>{song.preview_url}</li> ))
-      .push(this.nestedImagesArray = tracks.map((album) => <li>{album.album.images}</li> ))
-      .push(this.imagesArray = nestedImagesArray.map((image) => <li>{image}</li> ))
+      const albumNames = tracks.map((album) => <li>{album.album.name}</li> )
+      const theTracks = tracks.map((track) =>  <li>{track.name}</li> )
+      const songUrls = tracks.map((song) => <li>{song.preview_url}</li> )
+      const nestedImagesArray = tracks.map((album) => <li>{album.album.images}</li> )
+      const imagesArray = nestedImagesArray.map((image) => <li>{image}</li> )
 
       this.setState({
         artistName: tracks[0].artists[0].name,
@@ -55,21 +58,30 @@ class ArtistInfo extends Component{
   render(){
     return(
       <div>
+        <div className="table-responsive">
         <table className="table table-hover">
           <thead>
             <tr>
-              {/* <th>Artist</th>
-
+              <th>Artist</th>
               <th>Genres</th>
               <th>Albums</th>
               <th>Tracks</th>
-              <th>Song Names</th> */}
-              <ul>
-                {this.albumNames}
-              </ul>
             </tr>
+            <td>
+              here is the td
+            </td>
+            <td>
+              is
+            </td>
+            <td>
+              table
+            </td>
+            <td>
+              data
+            </td>
           </thead>
         </table>
+        </div>
       </div>
     )
   }
