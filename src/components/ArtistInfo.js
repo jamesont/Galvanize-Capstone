@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 // import ReactTable from 'react-table'
+import axios from 'axios'
+import 'react-table/react-table.css'
 
 // const key = '6482c833c701e11ea0e0ad3af29e89a1'
-const artist = 'metallica'
+const artist = 'pantera'
 const spotifyIdUrl = `https://api.spotify.com/v1/search?q=${artist}&type=artist`
 
 class ArtistInfo extends Component{
@@ -11,7 +12,6 @@ class ArtistInfo extends Component{
     super(props)
 
     this.state = {
-      // songElements: ''
       artistId: '',
       artistName: '',
       genres: [],
@@ -19,7 +19,6 @@ class ArtistInfo extends Component{
       tracks: [],
       songUrls: [],
     }
-
     this.getArtistInformation.call(this, spotifyIdUrl)
   }
 
@@ -27,22 +26,23 @@ class ArtistInfo extends Component{
 //==================GET ARTIST INFORMATION==================================
   getArtistInformation(spotifyIdUrl){
     const requestForArtistId = axios.get(spotifyIdUrl)
-    requestForArtistId.then( data => {
+    requestForArtistId.then( (data) => {
+      console.log(data.data.artists.items[0].genres);
       this.setState({
         artistId: data.data.artists.items[0].id,
         genres: data.data.artists.items[0].genres
       })
       const spotifyDataUrl = `https://api.spotify.com/v1/artists/${this.state.artistId}/top-tracks?country=us`
       return axios.get(spotifyDataUrl)
-    }).then( data => {
+    }).then( (data) => {
 
       const { tracks } = data.data
 
-      const albumNames = tracks.map((album) => <li>{album.album.name}</li> )
-      const theTracks = tracks.map((track) =>  <li>{track.name}</li> )
-      const songUrls = tracks.map((song) => <li>{song.preview_url}</li> )
-      const nestedImagesArray = tracks.map((album) => <li>{album.album.images}</li> )
-      const imagesArray = nestedImagesArray.map((image) => <li>{image}</li> )
+      const albumNames = tracks.map((album) => <td>{album.album.name}</td> )
+      const theTracks = tracks.map((track) =>  <td>{track.name}</td> )
+      const songUrls = tracks.map((song) => <td>{song.preview_url}</td> )
+      const nestedImagesArray = tracks.map((album) => <td>{album.album.images}</td> )
+      const imagesArray = nestedImagesArray.map((image) => <td>{image}</td> )
 
       this.setState({
         artistName: tracks[0].artists[0].name,
@@ -54,34 +54,24 @@ class ArtistInfo extends Component{
     })
 
   }
-  //=============end of getArtistInformation function==========================
+//=============end of getArtistInformation function==========================
   render(){
     return(
       <div>
-        <div className="table-responsive">
-        <table className="table table-hover">
+        <table className="table table-inverse">
           <thead>
             <tr>
-              <th>Artist</th>
-              <th>Genres</th>
+              <th>{this.state.artistName}</th>
+              <th>Genre(s)</th>
+              <th>Images</th>
               <th>Albums</th>
               <th>Tracks</th>
             </tr>
-            <td>
-              here is the td
-            </td>
-            <td>
-              is
-            </td>
-            <td>
-              table
-            </td>
-            <td>
-              data
-            </td>
           </thead>
+          <tbody>
+
+          </tbody>
         </table>
-        </div>
       </div>
     )
   }

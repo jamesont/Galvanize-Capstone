@@ -39,3 +39,7 @@ body, html {
   margin: 20px;
   text-align: center;
 }
+
+.form-inline {
+  margin-top: 100px
+}

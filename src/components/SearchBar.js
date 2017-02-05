@@ -1,31 +1,49 @@
-import React, { Component } from 'react';
-import '../App.css';
+import React, { Component } from 'react'
+import '../App.css'
+import ArtistInfo from './ArtistInfo'
 
 class SearchBar extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      setArtist: ''
+      setArtist: '',
+      searched: false
     }
   }
 
-  // setArtist(){
-  //
-  // }
-  
+  onSubmit(e){
+    e.preventDefault()
+    this.props.loginTrue()
+    return <ArtistInfo/>
+  }
+
+  onSearch(e){
+    console.log(event.target.value)
+    console.log(this.state)
+  }
+
   render() {
     return (
-      <div className="search-bar">
-        <input
-          value={this.state.setArtist}
-          onChange={event => this.setState({ setArtist: event.target.value })}
-          placeholder="   Search for an artist"
-        />
+      <div>
+        <div className="search-bar">
+          <form className="form-inline" onSubmit={this.onSearch()}>
+            <div>
+              <input
+                className="form-control"
+                value={this.state.setArtist}
+                onChange={event => this.setState({ setArtist: event.target.value, searched: true })}
+                placeholder="   Search for an artist"
+              />
+            </div>
+            <div>
+              <button type="submit" className="btn btn-default" onClick={this.onSearch()}>Search</button>
+            </div>
+          </form>
+        </div>
       </div>
-    );
+    )
   }
 
 }
 
-export default SearchBar;
-//state is an object that reacts to user events
+export default SearchBar
