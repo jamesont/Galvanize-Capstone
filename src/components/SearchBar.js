@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../App.css'
-import ArtistInfo from './ArtistInfo'
+// import ArtistInfo from './ArtistInfo'
 
 class SearchBar extends Component {
   constructor(props) {
@@ -9,24 +9,22 @@ class SearchBar extends Component {
       setArtist: '',
       searched: false
     }
-  }
 
-  onSubmit(e){
-    e.preventDefault()
-    this.props.loginTrue()
-    return <ArtistInfo/>
   }
 
   onSearch(e){
-    console.log(event.target.value)
-    console.log(this.state)
+    e.preventDefault()
+    this.props.passSearchInput(e)
   }
 
   render() {
     return (
       <div>
         <div className="search-bar">
-          <form className="form-inline" onSubmit={this.onSearch()}>
+          <form
+            className="form-inline"
+            onSubmit={this.onSearch.bind(this)}
+            >
             <div>
               <input
                 className="form-control"
@@ -36,7 +34,11 @@ class SearchBar extends Component {
               />
             </div>
             <div>
-              <button type="submit" className="btn btn-default" onClick={this.onSearch()}>Search</button>
+              <button
+                id="searchBarButton"
+                type="submit"
+                className="btn btn-default"
+              >Search</button>
             </div>
           </form>
         </div>
