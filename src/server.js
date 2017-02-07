@@ -17,4 +17,4 @@ app.listen(PORT, function() {
 router.route('/')
   .get(function(req, res) {
     res.render("./public/index")
-  });
+});

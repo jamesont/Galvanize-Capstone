@@ -16,9 +16,13 @@ class CreateNewUser extends Component{
     // this.addEmail = this.addPassword.bind(this)
   }
 
-  onSubmit(e){ e.preventDefault(); this.setState({loggedIn: true})}
+  // onSubmit(e){ e.preventDefault(); this.setState({loggedIn: true})}
 
-
+  onSubmit(e){
+    e.preventDefault()
+    this.props.loginTrue()
+  
+  }
   // addFirstName(e){ this.setState({ firstName: e.target.value }) }
   // addLastName(e){ this.setState({ lastName: e.target.value }) }
   // addEmail(e){ this.setState({ email: e.target.value }) }

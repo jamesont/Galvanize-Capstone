@@ -10,7 +10,7 @@ module.exports = {
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'Bandwagon',
+      database: 'bandwagon',
       user:     'thomas jameson',
       password: 'monkeyman042008'
     },
@@ -25,6 +25,7 @@ module.exports = {
       database: 'bandwagon',
       user:     'username'
     },
+    
     migrations: {
       tableName: 'knex_migrations'
     }

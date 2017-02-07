@@ -13,12 +13,9 @@ class LoginForm extends Component{
 
   onSubmit(e){
     e.preventDefault()
-    this.props.loginTrue()
-    console.log(e);
-  }
+    this.props.loginTrue()  }
 
   render(){
-    // console.log(this.state);
     return (
       <div>
         <form

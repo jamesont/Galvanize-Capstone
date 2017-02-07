@@ -22,7 +22,6 @@
     "react-table": "^5.0.0",
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
-    "spotify": "^0.3.0",
     "stylus": "^0.54.5"
   },
   "devDependencies": {
