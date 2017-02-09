@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
+import knex from 'knex'
 
 import SearchBar from './components/SearchBar'
 import LoginForm from './components/LoginForm'
@@ -20,6 +21,7 @@ class App extends Component {
       artistId: '',
       artistName: '',
       genres: [],
+      albums: [],
       images: [],
       tracks: [],
       songUrls: [],
@@ -41,16 +43,21 @@ getArtistInformation(spotifyIdUrl){
       genres: data.data.artists.items[0].genres
     })
     const spotifyDataUrl = `https://api.spotify.com/v1/artists/${this.state.artistId}/top-tracks?country=us`
-    return axios.get(spotifyDataUrl)
+      return axios.get(spotifyDataUrl)
   }).then( (data) => {
 
+  console.log('here is the data', data);
+
     const { tracks } = data.data
-    console.log(tracks);
-    const albumNames = tracks.map((album) => album.album.name + '\n' )
+    const albumNames = tracks.map((album) => (album.album.name + '\n').split(' ') )
     const theTracks = tracks.map((track) =>  track.name + '\n' )
     const songUrls = tracks.map((song) => song.preview_url + '\n' )
     const nestedImagesArray = tracks.map((album) => album.album.images[0].url + '\n')
-    const imagesArray = nestedImagesArray.map((image) => image + '\n')
+    const imagesArray = nestedImagesArray.map((image) => image)
+
+
+    knex('users_artists').insert({"artist_id": tracks[0].artists[0].name})
+
 
     this.setState({
       artistName: tracks[0].artists[0].name,
@@ -108,7 +115,14 @@ getArtistInformation(spotifyIdUrl){
             { this.state.loggedIn && <SearchBar passSearchInput={this.passSearchInput} showArtistTable={this.showArtistTable} /> }
   		      { !this.state.loggedIn && <LoginForm loginTrue={this.loginTrue.bind(this)} hasAccount={this.hasAccount.bind(this)}/> }
   			    { !this.state.loggedIn && !this.state.hasAccount && <CreateNewUser loginTrue={this.loginTrue.bind(this) } hasAccount={this.hasAccount.bind(this)}/> }
-            <ArtistInfo artistName={this.state.setArtist}  getArtistInformation={this.getArtistInformation}/>
+            <ArtistInfo
+              artistName={this.state.setArtist}
+              albums={this.state.albums}
+              tracks={this.state.tracks}
+              songUrls={this.state.songUrls}
+              images={this.state.images}
+              getArtistInformation={this.getArtistInformation}
+            />
         </div>
       )
     }

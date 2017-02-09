@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../App.css'
-// import ArtistInfo from './ArtistInfo'
+import { Button } from 'react-bootstrap'
 
 class SearchBar extends Component {
   constructor(props) {
@@ -24,7 +24,9 @@ class SearchBar extends Component {
                 placeholder="   Search for an artist" />
             </div>
             <div>
-              <button id="searchBarButton" type="submit" className="btn btn-default">Search</button>
+
+                <Button id="searchBarButton" type="submit" bsStyle="primary" className="btn btn-default">Search</Button>
+
             </div>
           </form>
         </div>

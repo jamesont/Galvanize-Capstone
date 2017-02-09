@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import ArtistInfo from './ArtistInfo'
+import { Button } from 'react-bootstrap'
 
 class LoginForm extends Component{
   constructor(props){
@@ -13,12 +13,14 @@ class LoginForm extends Component{
 
   onSubmit(e){
     e.preventDefault()
-    this.props.loginTrue()  }
+    this.props.loginTrue()
+  }
 
   render(){
     return (
       <div>
         <form
+          action=""
           className="form-inline"
           onSubmit={this.onSubmit.bind(this)}
           >
@@ -39,10 +41,12 @@ class LoginForm extends Component{
               onChange={event => this.setState({ password: event.target.value})}
             />
           </div>
-          <button
+          <Button
             id="loginButton"
             type="submit"
-            className="btn btn-default">Login</button>
+            bsStyle="primary"
+            className="btn btn-default"
+            >Login</Button>
         </div>
         </form>
       </div>
