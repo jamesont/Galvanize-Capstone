@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: 'bandwagon',
+    connection: 'postgres://localhost/bandwagon',
     useNullAsDefault: true
   },
 

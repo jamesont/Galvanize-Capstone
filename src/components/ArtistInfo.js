@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ControlledCarousel from './ControlledCarousel'
 
 class ArtistInfo extends Component{
   constructor(props){

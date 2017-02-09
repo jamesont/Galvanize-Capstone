@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Button from 'react-bootstrap/lib/Button'
+import axios from 'axios'
 
 class CreateNewUser extends Component{
   constructor(props){
@@ -16,7 +17,16 @@ class CreateNewUser extends Component{
   onSubmit(e){
     e.preventDefault()
     this.props.loginTrue()
-
+    axios.post('http://localhost:8000/createNewUser', {
+      first_name: this.state.firstName,
+      last_name: this.state.lastName,
+      email: this.state.email,
+      hashed_password: this.state.password
+    }).then(function (response) {
+        console.log(response);
+       }).catch(function (error) {
+        console.log(error);
+       });
   }
 
   render(){

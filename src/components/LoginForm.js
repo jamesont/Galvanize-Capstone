@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
+import axios from 'axios'
+
 
 class LoginForm extends Component{
   constructor(props){
@@ -14,6 +16,14 @@ class LoginForm extends Component{
   onSubmit(e){
     e.preventDefault()
     this.props.loginTrue()
+    axios.get('http://localhost:8000/LoginForm', {
+      email: this.state.email,
+      hashed_password: this.state.password
+    }).then(function (response) {
+        console.log(response);
+    }).catch(function (error) {
+        console.log(error);
+    });
   }
 
   render(){
