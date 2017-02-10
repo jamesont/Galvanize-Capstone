@@ -38,7 +38,7 @@ class CreateNewUser extends Component{
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="           First name "
+                  placeholder="First name "
                   onChange={event => this.setState({ firstName: event.target.value })}
                 />
               </div>
@@ -46,7 +46,7 @@ class CreateNewUser extends Component{
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="           Last name "
+                  placeholder="Last name "
                   onChange={event => this.setState({ lastName: event.target.value })}
                 />
               </div>
@@ -54,7 +54,7 @@ class CreateNewUser extends Component{
                 <input
                   type="email"
                   className="form-control"
-                  placeholder="              Email "
+                  placeholder="Email "
                   onChange={event => this.setState({ email: event.target.value })}
                 />
               </div>
@@ -62,7 +62,7 @@ class CreateNewUser extends Component{
                 <input
                   type="password"
                   className="form-control"
-                  placeholder="           Password "
+                  placeholder="Password "
                   onChange={event => this.setState({ password: event.target.value })}
                 />
               </div>
