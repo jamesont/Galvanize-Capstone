@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import '../App.css'
 import { Button } from 'react-bootstrap'
-import axios from "axios"
-
 
 class SearchBar extends Component {
   constructor(props) {
@@ -41,7 +39,7 @@ class SearchBar extends Component {
             <div>
               <input className="form-control"
                 onChange={ this.props.passSearchInput }
-                placeholder="   Search for an artist" />
+                placeholder="Search for an artist" />
             </div>
             <div>
               <Button

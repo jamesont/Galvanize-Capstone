@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import logo from './logo.svg'
-import knex from 'knex'
 
 import SearchBar from './components/SearchBar'
 import LoginForm from './components/LoginForm'
 import CreateNewUser from './components/CreateNewUser'
-import ArtistInfo from './components/ArtistInfo'
 import ArtistCard from './components/ArtistCard';
 import axios from 'axios'
 import './App.css'
@@ -19,7 +17,8 @@ class App extends Component {
       hasAccount: false,
       artistId: '',
       showArtistTable: false,
-      data: []
+      data: [],
+      albums: []
     }
 
     this.passSearchInput = this.passSearchInput.bind(this)
@@ -49,8 +48,7 @@ class App extends Component {
           albums[album.album.name].tracks.push(album)
         }
       })
-      knex('users_artists').insert({"artist_id": tracks[0].artists[0].name})
-      this.setState({ data: tracks })
+      this.setState({ data: tracks, albums: albums })
     })
   }
 
@@ -75,10 +73,10 @@ class App extends Component {
 
   render() {
     if (this.state.showArtistTable) {
-      let {data} = this.state;
+      let {data} = this.state
       let mappedData = data.map((tracks) => {
-        return (<ArtistCard tracks={tracks}/>)
-      })
+      return (<ArtistCard tracks={tracks}/>)
+    })
       return (
 
         <div className="App">
