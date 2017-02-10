@@ -8,7 +8,7 @@ export default class ArtistCard extends Component {
 
   render() {
     let {tracks} = this.props
-
+    
     return (
       <div className="col s3 m3">
         <div className="card">
