@@ -49,7 +49,8 @@ app.post('/LoginForm', function(req, res) {
     email: req.body.email,
     hashed_password: req.body.hashed_password
   }).then(function(data) {
-    if (data.length === 0) return res.render("/localhost:3000")
+    if (data.length === 0)
+    console.log('User name not found');
   }).catch(function(err) {
     next(new Error(err))
   })

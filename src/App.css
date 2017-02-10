@@ -54,6 +54,8 @@ body, html {
   text-align: center;
 }
 
+#particleTrails {}
+
 .form-inline {
   /*margin-top: 100px;*/
   width: 40%;

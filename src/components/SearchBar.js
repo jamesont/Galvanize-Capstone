@@ -32,7 +32,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div>
+      <div id="particleTrails">
         <div className="search-bar">
           <form className="form-inline"
             onSubmit={this.props.showArtistTable}>

@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import logo from './logo.svg'
-
+// import createFragment from 'react-addons-create-fragment'
 import SearchBar from './components/SearchBar'
 import LoginForm from './components/LoginForm'
 import CreateNewUser from './components/CreateNewUser'
-import ArtistCard from './components/ArtistCard';
 import axios from 'axios'
 import './App.css'
+import ArtistCard from './components/ArtistCard'
+
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class App extends Component {
       loggedIn: false,
       hasAccount: false,
       artistId: '',
-      showArtistTable: false,
+      showArtistTable: true,
       data: [],
       albums: []
     }
@@ -37,7 +38,7 @@ class App extends Component {
       return axios.get(spotifyDataUrl)
     }).then((data) => {
 
-      let albums = {}
+      let albums = {};
       const {tracks} = data.data
 
       tracks.forEach((album) => {
@@ -49,6 +50,7 @@ class App extends Component {
         }
       })
       this.setState({ data: tracks, albums: albums })
+
     })
   }
 
@@ -72,12 +74,14 @@ class App extends Component {
   }
 
   render() {
+
     if (this.state.showArtistTable) {
       let {data} = this.state
       let mappedData = data.map((tracks) => {
-      return (<ArtistCard tracks={tracks}/>)
+        return (<ArtistCard tracks={tracks}/>)
     })
-      return (
+
+    return (
 
         <div className="App">
           <div className="App-header">

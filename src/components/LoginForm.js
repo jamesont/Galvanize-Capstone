@@ -19,10 +19,10 @@ class LoginForm extends Component{
     axios.post('http://localhost:8000/LoginForm', {
       email: this.state.email,
       hashed_password: this.state.password
-    }).then(function (response) {
-      console.log(response);
-    }).catch(function (error) {
-      console.log(error);
+    }).then(function (res) {
+      console.log(res);
+    }).catch(function (err) {
+      console.log(err);
     })
   }
 
