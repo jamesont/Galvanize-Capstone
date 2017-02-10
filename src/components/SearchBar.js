@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import '../App.css'
 import { Button } from 'react-bootstrap'
+import axios from "axios"
+
 
 class SearchBar extends Component {
   constructor(props) {
@@ -9,8 +11,26 @@ class SearchBar extends Component {
       setArtist: '',
       searched: false
     }
-
   }
+
+// ///////////work on this later============================
+//   onClick(e){
+//     e.preventDefault()
+//     this.setState({
+//       searched: true
+//     })
+//     axios.post('http://localhost:8000/addArtistInfoToDB', {
+//       first_name: this.state.firstName,
+//       last_name: this.state.lastName,
+//       email: this.state.email,
+//       hashed_password: this.state.password
+//     }).then(function (response) {
+//         console.log(response);
+//        }).catch(function (error) {
+//         console.log(error);
+//        });
+//   }
+//onClick={this.onClick()}
 
   render() {
     return (
@@ -24,9 +44,12 @@ class SearchBar extends Component {
                 placeholder="   Search for an artist" />
             </div>
             <div>
-
-                <Button id="searchBarButton" type="submit" bsStyle="primary" className="btn btn-default">Search</Button>
-
+              <Button
+                id="searchBarButton"
+                type="submit"
+                bsStyle="primary"
+                className="btn btn-default">Search
+              </Button>
             </div>
           </form>
         </div>

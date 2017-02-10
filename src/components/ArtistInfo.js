@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class ArtistInfo extends Component{
   constructor(props){
     super(props)
-    console.log('artist info props', props);
+    console.log('artist info props', props)
 
   }
 
@@ -14,7 +14,7 @@ class ArtistInfo extends Component{
   }
 
   dothetracks(){
-    let tracks;
+    let tracks
     for(let i = 0; i < this.props.songUrls.length; i++){
       tracks += this.props.songUrls[i]
     }

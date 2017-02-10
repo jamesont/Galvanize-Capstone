@@ -14,16 +14,18 @@ class LoginForm extends Component{
   }
 
   onSubmit(e){
+    console.log(this.state.password);
+    console.log(this.state.email);
     e.preventDefault()
     this.props.loginTrue()
-    axios.get('http://localhost:8000/LoginForm', {
+    axios.post('http://localhost:8000/LoginForm', {
       email: this.state.email,
       hashed_password: this.state.password
     }).then(function (response) {
-        console.log(response);
+      console.log(response);
     }).catch(function (error) {
-        console.log(error);
-    });
+      console.log(error);
+    })
   }
 
   render(){

@@ -8,14 +8,11 @@ const bodyParser = require('body-parser')
 
 const app = express()
 const PORT = process.env.PORT || 8000
-const knex = require('./db/knex.js');
-
-const routes = require('./routes/index')
-const users = require('./routes/users')
-const artistInfo = require('./routes/artistInfo')
+const knex = require('./db/knex.js')
+const html = require('html')
 
 app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'hbs')
+app.set('view engine', 'html')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
@@ -23,24 +20,14 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(function(req, res, next) {
-   res.header('Access-Control-Allow-Origin', '*');
-   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+   res.header('Access-Control-Allow-Origin', '*')
+   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
+   if ('OPTIONS' === req.method) res.sendStatus(200)
+   else next()
+})
 
-   // intercept OPTIONS method
-   if ('OPTIONS' === req.method) {
-     res.sendStatus(200);
-   }
-   else {
-     next();
-   }
-});
-
-app.use('/', routes)
-app.use('/users', users)
-app.use('/artistInfo', artistInfo)
-
-// ===================add data to db======================
+//===================add data to db==========================
 app.post('/createNewUser', function(req, res) {
   knex('users').returning("*").insert({
     first_name: req.body.first_name,
@@ -50,39 +37,25 @@ app.post('/createNewUser', function(req, res) {
   }).then(function(data) {
     res.json(data)
   }).catch(function(err) {
-    console.log(err);
+    next(new Error(err))
   })
 })
-// ====================end db post============================
+//====================end db post=============================
 
-// ======================start db get request ===================
-// app.get('/LoginForm', function(req, res) {
-//   knex('users').where({
-//       email: req.body.email,
-//       hashed_password: req.body.hashed_password
-//     }).then(function(req){
-//       console.log('data', req);
-//     }).catch(function(error){
-//       console.log('error', error);
-//       res.render('/public/error')
-//     })
-//   })
-// ======================end db get request ===================
 
-// ======================start db get request ===================
-app.get('/LoginForm', function(req, res) {
+//======================start db validation===================
+app.post('/LoginForm', function(req, res) {
   knex('users').where({
-      email: req.body.email,
-      hashed_password: req.body.hashed_password
-    }).then(function(req){
-      console.log('data', req);
-    }).catch(function(error){
-      console.log('error', error);
-      res.render('/public/error')
-    })
+    email: req.body.email,
+    hashed_password: req.body.hashed_password
+  }).then(function(data) {
+    if (data.length === 0) return res.render("/localhost:3000")
+  }).catch(function(err) {
+    next(new Error(err))
   })
-// ======================end db get request ===================
+})
+//======================end db validation=====================
 
 app.listen(PORT, function() {
-  console.log(`Port is listening on port ${PORT}`);
+  console.log(`Port is listening on port ${PORT}`)
 })
