@@ -1,13 +1,11 @@
-import React, {Component} from 'react'
-import logo from './logo.svg'
-// import createFragment from 'react-addons-create-fragment'
-import SearchBar from './components/SearchBar'
-import LoginForm from './components/LoginForm'
-import CreateNewUser from './components/CreateNewUser'
-import axios from 'axios'
 import './App.css'
 import ArtistCard from './components/ArtistCard'
-
+import axios from 'axios'
+import CreateNewUser from './components/CreateNewUser'
+import LoginForm from './components/LoginForm'
+import logo from './logo.svg'
+import React, {Component} from 'react'
+import SearchBar from './components/SearchBar'
 
 class App extends Component {
   constructor(props) {
@@ -77,9 +75,10 @@ class App extends Component {
 
     if (this.state.showArtistTable) {
       let {data} = this.state
-      let mappedData = data.map((tracks) => {
+      var mappedData = data.map((tracks) => {
         return (<ArtistCard tracks={tracks}/>)
-    })
+      })
+      console.log('mapped', mappedData);
 
     return (
 
