@@ -21,16 +21,12 @@
     "path": "^0.12.7",
     "pg": "^6.1.2",
     "pgsql": "^1.0.0",
-    "react": "^0.14.8",
+    "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^0.14.3",
-    "react-redux": "^4.4.6",
-    "react-router": "^2.0.1",
-    "react-sparklines": "^1.6.0",
-    "react-table": "^5.0.0",
-    "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
-    "serve-favicon": "^2.3.2"
+    "serve-favicon": "^2.3.2",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "react-scripts": "0.8.5",
@@ -45,10 +41,9 @@
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^0.14.7",
     "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0",
-    "react-audio-visualizer": "^1.0.3"
+    "webpack-dev-server": "^1.14.0"
   },
-  "author": "Thomas Jameson <thomas.gregory.jameson@gmail.com>",
+  "author": "Ur mom <thomas.gregory.jameson@gmail.com>",
   "license": "ISC",
   "directories": {
     "test": "test"
