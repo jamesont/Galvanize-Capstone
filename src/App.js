@@ -86,32 +86,30 @@ class App extends Component {
           <div className="App-header">
             <img src={logo} className="App-logo" alt="logo"/>
             <h2 id="welcome">Bandwagon</h2>
-            <div className="container">{mappedData}</div>
           </div>
           <div className="container">
             {this.state.loggedIn && <SearchBar passSearchInput={this.passSearchInput} showArtistTable={this.showArtistTable}/>}
             {!this.state.loggedIn && <LoginForm loginTrue={this.loginTrue.bind(this)} hasAccount={this.hasAccount.bind(this)}/>}
             {!this.state.loggedIn && !this.state.hasAccount && <CreateNewUser loginTrue={this.loginTrue.bind(this)} hasAccount={this.hasAccount.bind(this)}/>}
-          <div className="card-container">{mappedData}</div>
+            <div className="card-container"><div className="row">{mappedData}</div></div>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo"/>
+            <h2>Bandwagon</h2>
+          </div>
+          <div className="container">
+            {this.state.loggedIn && <SearchBar passSearchInput={this.passSearchInput} showArtistTable={this.showArtistTable}/>}
+            {!this.state.loggedIn && <LoginForm loginTrue={this.loginTrue.bind(this)} hasAccount={this.hasAccount.bind(this)}/>}
+            {!this.state.loggedIn && !this.state.hasAccount && <CreateNewUser loginTrue={this.loginTrue.bind(this)} hasAccount={this.hasAccount.bind(this)}/>}
           </div>
         </div>
       )
     }
-
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <h2>Bandwagon</h2>
-        </div>
-        <div className="container">
-          {this.state.loggedIn && <SearchBar passSearchInput={this.passSearchInput} showArtistTable={this.showArtistTable}/>}
-          {!this.state.loggedIn && <LoginForm loginTrue={this.loginTrue.bind(this)} hasAccount={this.hasAccount.bind(this)}/>}
-          {!this.state.loggedIn && !this.state.hasAccount && <CreateNewUser loginTrue={this.loginTrue.bind(this)} hasAccount={this.hasAccount.bind(this)}/>}
-        </div>
-      </div>
-    )
   }
 }
-
 export default App

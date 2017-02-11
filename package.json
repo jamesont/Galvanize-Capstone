@@ -12,6 +12,7 @@
     "db": "^1.0.6",
     "express": "^4.14.1",
     "express-generator": "^4.14.1",
+    "html": "^1.0.0",
     "knex": "^0.12.6",
     "lodash": "^3.10.1",
     "logger": "0.0.1",
@@ -21,7 +22,6 @@
     "pg": "^6.1.2",
     "pgsql": "^1.0.0",
     "react": "^0.14.8",
-    "react-audio-visualizer": "1.0.0",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^0.14.3",
     "react-redux": "^4.4.6",
@@ -30,8 +30,7 @@
     "react-table": "^5.0.0",
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
-    "serve-favicon": "^2.3.2",
-    "stylus": "^0.54.5"
+    "serve-favicon": "^2.3.2"
   },
   "devDependencies": {
     "react-scripts": "0.8.5",
