@@ -3,7 +3,7 @@ module.exports = {
     './src/index.js'
   ],
   output: {
-    // path: 'public/js',
+    path: 'public/js',
     path: __dirname,
     publicPath: '/',
     filename: 'bundle.js'
@@ -12,13 +12,14 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'babel-loader',
+      loader: 'babel',
       query: {
         presets: ['react', 'es2015', 'stage-1']
       }
     }]
   },
   resolve: {
+    alias: { 'react/lib/ReactMount': 'react-dom/lib/ReactMount' },
     extensions: ['', '.js', '.jsx']
   },
   devServer: {

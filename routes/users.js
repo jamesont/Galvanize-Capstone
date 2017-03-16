@@ -3,10 +3,10 @@ const router = express.Router()
 const knex = require('../db/knex');
 
 router.get('/', function(req, res, next) {
-  knex('users')
-    .select('*')
-    .then(users => {
-      res.render('../views/users', { 'users': users })
+    knex('users')
+        .select('*')
+        .then(users => {
+        res.render('../views/users', { 'users': users })
     })
 })
 
