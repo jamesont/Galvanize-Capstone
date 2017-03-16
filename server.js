@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
@@ -28,15 +28,15 @@ app.use(function(req, res, next) {
 })
 
 //===================add data to db==========================
-app.post('/createNewUser', function(req, res) {
+app.post('/createNewUser', (req, res) => {
     knex('users').returning("*").insert({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
         hashed_password: req.body.hashed_password
-    }).then(function(data) {
+    }).then((data) => {
         res.json(data)
-    }).catch(function(err) {
+    }).catch((err) => {
         next(new Error(err))
     })
 })
@@ -44,19 +44,19 @@ app.post('/createNewUser', function(req, res) {
 
 
 //======================start db validation===================
-app.post('/LoginForm', function(req, res) {
+app.post('/LoginForm', (req, res) => {
     knex('users').where({
         email: req.body.email,
         hashed_password: req.body.hashed_password
-    }).then(function(data) {
+    }).then((data) => {
     if (data.length === 0)
         console.log('User name not found');
-    }).catch(function(err) {
+    }).catch((err) => {
         next(new Error(err))
     })
 })
 //======================end db validation=====================
 
-app.listen(PORT, function() {
+app.listen(PORT, () => {
     console.log(`Port is listening on port ${PORT}`)
 })

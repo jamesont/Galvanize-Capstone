@@ -78,8 +78,7 @@ class App extends Component {
           var mappedData = data.map((tracks) => {
           return (<ArtistCard tracks={tracks}/>)
       })
-      console.log('mapped', mappedData)
-
+  
       return (
           <div className="App">
               <div className="App-header">

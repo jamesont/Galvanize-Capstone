@@ -37,7 +37,7 @@ class ArtistInfo extends Component{
                             <td>{this.props.artistName}</td>
                             <td>{this.props.albums}</td>
                             <td>
-                            {this.props.songUrls.map(function(songUrl, i) {
+                            {this.props.songUrls.map( (songUrl, i) => {
                                 return (
                                     <tr>
                                         <a href={songUrl}>{this.props.tracks[i]}</a>

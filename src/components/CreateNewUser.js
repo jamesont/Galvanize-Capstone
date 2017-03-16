@@ -22,9 +22,9 @@ class CreateNewUser extends Component{
             last_name: this.state.lastName,
             email: this.state.email,
             hashed_password: this.state.password
-        }).then(function (response) {
+        }).then( (response) => {
             console.log(response);
-        }).catch(function (error) {
+        }).catch( (error) => {
             console.log(error);
         });
     }

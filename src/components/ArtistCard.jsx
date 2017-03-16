@@ -1,7 +1,24 @@
 import React, {Component} from 'react'
 
 export default class ArtistCard extends Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            preview_url: []
+        }
+    }
+
+    createNewAudioInstance(){
+        let audio = new Audio()
+        audio.src = this.props.tracks.preview_url
+        audio.controls = true
+        audio.loop = true
+        audio.autoplay = true
+    }
+
     render() {
+      console.log('these are the track preview_urls', this.props.tracks.preview_url)
         let {tracks} = this.props
         return (
             <div className="card col s3">
