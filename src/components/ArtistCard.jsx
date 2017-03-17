@@ -3,22 +3,18 @@ import React, {Component} from 'react'
 export default class ArtistCard extends Component {
     constructor(props){
         super(props)
-
-        this.state = {
-            preview_url: []
-        }
+        // this.state = {
+        //
+        // }
     }
 
-    createNewAudioInstance(){
-        let audio = new Audio()
-        audio.src = this.props.tracks.preview_url
-        audio.controls = true
-        audio.loop = true
-        audio.autoplay = true
+    setPreviewUrl(e){
+        e.preventDefault()
+        console.log(this.props.tracks.preview_url)
+        return this.props.tracks.preview_url
     }
 
     render() {
-      console.log('these are the track preview_urls', this.props.tracks.preview_url)
         let {tracks} = this.props
         return (
             <div className="card col s3">
@@ -31,7 +27,10 @@ export default class ArtistCard extends Component {
                         <p id="artistCardTrackName">{tracks.album.name}</p>
                     </div>
                     <div className="card-action">
-                        <a href={tracks.preview_url}>{tracks.name}</a>
+                        <a
+                            onClick={this.setPreviewUrl}
+                            href={tracks.preview_url}>{tracks.name}
+                        </a>
                     </div>
                 </div>
             </div>

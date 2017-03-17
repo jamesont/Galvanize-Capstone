@@ -19,16 +19,30 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use((req, res, next) => {
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*')
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
+//     if ('OPTIONS' === req.method) res.sendStatus(200)
+//     else next()
+// })
+
+var allowCrossDomain = (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
-    if ('OPTIONS' === req.method) res.sendStatus(200)
-    else next()
-})
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200)
+    } else {
+      next()
+    }
+}
+app.use(allowCrossDomain)
 
 //===================add data to db==========================
-app.post('/createNewUser', (req, res) => {
+app.post('/createNewUser', (req, res, next) => {
     knex('users').returning("*").insert({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -44,18 +58,38 @@ app.post('/createNewUser', (req, res) => {
 
 
 //======================start db validation===================
-app.post('/LoginForm', (req, res) => {
+// app.post('/LoginForm', (req, res) => {
+//     knex('users').where({
+//         email: req.body.email,
+//         hashed_password: req.body.hashed_password
+//     }).then((data) => {
+//     if (data.length === 0){
+//       console.log('User name not found')
+//     }else{
+//         res.send('logged in!')
+//     }}).catch((err) => {
+//         next(new Error(err))
+//     })
+// })
+//======================end db validation=====================
+
+//======================start db validation===================
+app.post('/LoginForm', (req, res, next) => {
     knex('users').where({
         email: req.body.email,
         hashed_password: req.body.hashed_password
     }).then((data) => {
-    if (data.length === 0)
-        console.log('User name not found');
+        console.log('hit')
+        if(data.length === 0) {
+            res.sendStatus(400)
+        }else{ res.json(data) }
     }).catch((err) => {
         next(new Error(err))
     })
 })
 //======================end db validation=====================
+
+
 
 app.listen(PORT, () => {
     console.log(`Port is listening on port ${PORT}`)

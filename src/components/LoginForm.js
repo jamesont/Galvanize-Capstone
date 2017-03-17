@@ -17,12 +17,12 @@ class LoginForm extends Component{
         e.preventDefault()
         this.props.loginTrue()
         console.log(this.state)
-        axios.post('/LoginForm', {
+        axios.post('http://localhost:8000/LoginForm', {
             email: this.state.email,
             hashed_password: this.state.password
-        }).then( (res) => {
+        }).then((res) => {
             console.log(res)
-        }).catch( (err) => {
+        }).catch((err) => {
             console.log(err)
         })
     }

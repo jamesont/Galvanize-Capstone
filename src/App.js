@@ -62,9 +62,21 @@ class App extends Component {
         }
     }
 
-    hasAccount() {this.setState({loggedIn: true, hasAccount: true, showArtistTable: this.state.showArtistTable})}
+    hasAccount() {
+      this.setState({
+            loggedIn: true,
+            hasAccount: true,
+            showArtistTable: this.state.showArtistTable
+        }
+    )}
 
-    loginTrue() {this.setState({loggedIn: true, hasAccount: true, showArtistTable: this.state.showArtistTable})}
+    loginTrue() {
+        this.setState({
+            loggedIn: true,
+            hasAccount: true,
+            showArtistTable: this.state.showArtistTable
+        }
+    )}
 
     passSearchInput(event) {
         let formInput = event.target.value
@@ -78,7 +90,7 @@ class App extends Component {
           var mappedData = data.map((tracks) => {
           return (<ArtistCard tracks={tracks}/>)
       })
-  
+
       return (
           <div className="App">
               <div className="App-header">

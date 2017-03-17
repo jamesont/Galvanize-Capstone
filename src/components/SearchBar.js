@@ -38,7 +38,7 @@ class SearchBar extends Component {
                 onSubmit={this.props.showArtistTable}>
                 <div>
                     <input className="form-control"
-                    onChange={ this.props.passSearchInput }
+                    onChange={this.props.passSearchInput} 
                     placeholder="Search for an artist" />
                 </div>
                 <div>
