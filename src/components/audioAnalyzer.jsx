@@ -4,8 +4,8 @@ import '../App.css'
 export default class AudioAnalyzer extends Component {
     constructor(props){
         super(props)
+
         this.createVisualization = this.createVisualization.bind(this)
-        console.log(this.props);
     }
 
     componentDidMount(){
@@ -38,7 +38,6 @@ export default class AudioAnalyzer extends Component {
                 let bar_width = 2;
                 let bar_height = -(freqData[i] / 2);
                 ctx.fillRect(bar_x, canvas.height, bar_width, bar_height)
-
             }
         }
         renderFrame()
