@@ -72,9 +72,9 @@ export default class CreateNewUser extends Component{
               bsStyle="primary"
               className="btn btn-default">Sign Up!
             </Button>
-            </div>
-          </form>
-        </div>
-      )
-    }
+          </div>
+        </form>
+      </div>
+    )
   }
+}
