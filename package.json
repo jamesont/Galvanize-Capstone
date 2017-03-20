@@ -22,7 +22,6 @@
     "react": "^0.14.8",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^0.14.8",
-    "redux-promise": "^0.5.3",
     "serve-favicon": "^2.3.2",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.0",
