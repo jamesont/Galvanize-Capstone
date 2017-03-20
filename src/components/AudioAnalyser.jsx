@@ -13,19 +13,30 @@ export default class AudioAnalyzer extends Component {
   }
 
   createVisualization(){
+    // instance of a new AudioContext class - contains linked nodes that
+    // contain execution of audio processing
     let context = new AudioContext()
+    //exposes audio time and frequency data and to create data visualizations
     let analyser = context.createAnalyser()
-    let canvas = this.refs.analyserCanvas //like doc.getelbyId
+    //refs are react's version of document.getElementById:
+    //grabs a canvas div
+    let canvas = this.refs.analyserCanvas
+    // creates a 2d rendering context
     let ctx = canvas.getContext('2d')
-    let audio = this.refs.audio //like doc.getelbyId
+    //grab audio tag
+    let audio = this.refs.audio
+    //prevents CORS access restriction
     audio.crossOrigin = "anonymous"
+    //creates new MediaElementAudioSourceNode obj. manipulates audio tags
     let audioSrc = context.createMediaElementSource(audio)
+    //connects freqData to the audio tag manipulater
     audioSrc.connect(analyser)
+    // connect AudioContext and analyser to source destination (the audio instance)
     audioSrc.connect(context.destination)
     analyser.connect(context.destination)
-    renderFrame()
 
-    function renderFrame(){
+    function renderFrame
+      // creates an array of 8 bit integers
       let freqData = new Uint8Array(analyser.frequencyBinCount)
       requestAnimationFrame(renderFrame)
       analyser.getByteFrequencyData(freqData)
@@ -46,7 +57,7 @@ export default class AudioAnalyzer extends Component {
   render(){
     return (
       <div>
-        <h5>{this.props.artistName + ':' + this.props.songName}</h5>
+        <h5>{this.props.artistName + ': ' + this.props.songName}</h5>
         <div id="mp3_player">
           <div id="audio_box">
             <audio
