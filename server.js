@@ -15,31 +15,31 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'html')
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*')
-//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
-//     if ('OPTIONS' === req.method) res.sendStatus(200)
-//     else next()
-// })
-
-var allowCrossDomain = (req, res, next) => {
+app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
+    if ('OPTIONS' === req.method) res.sendStatus(200)
+    else next()
+})
 
-    // intercept OPTIONS method
-    if ('OPTIONS' == req.method) {
-      res.send(200)
-    } else {
-      next()
-    }
-}
-app.use(allowCrossDomain)
+// var allowCrossDomain = (req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*')
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
+//
+//     // intercept OPTIONS method
+//     if ('OPTIONS' == req.method) {
+//       res.send(200)
+//     } else {
+//       next()
+//     }
+// }
+// app.use(allowCrossDomain)
 
 //===================add data to db==========================
 app.post('/createNewUser', (req, res, next) => {

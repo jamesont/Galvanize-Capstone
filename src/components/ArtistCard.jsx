@@ -6,24 +6,23 @@ export default class ArtistCard extends Component {
         super(props)
 
         this.state = {
-            renderAudioVisualizer: false,
-            preview_url: ''
+            // renderAudioAnalyzer: false,
+            setPreviewUrl: ''
         }
+
+        this.updateSongUrl = this.updateSongUrl.bind(this);
     }
 
-    togglePreviewUrlState(){
-        this.setState({
-            renderAudioVisualizer: true,
-            preview_url: this.state.preview_url
-        })
-        console.log('thisisthestaste' , this.state);
+    updateSongUrl(e){
+        e.preventDefault()
+        this.props.updatePreviewUrl(this.props.previewUrl, this.props.songName, this.props.artistName)
     }
 
     render() {
         let {tracks} = this.props
-        if(!this.state.renderAudioVisualizer){
+        // if(!this.state.renderAudioAnalyzer){
             return (
-                <div className="card col s3">
+                <div className="card col s3" id="artistCard">
                     <div className="card-inner">
                         <div className="card-image">
                             <img alt="/logo.svg" className="Image" src={tracks.album.images[1].url}/>
@@ -34,19 +33,12 @@ export default class ArtistCard extends Component {
                         </div>
                         <div className="card-action">
                             <a
-                                onClick={this.togglePreviewUrlState.bind(this)}
+                                onClick={this.updateSongUrl}
                                 href={tracks.preview_url}
                             >{tracks.name}</a>
                         </div>
                     </div>
                 </div>
             )
-        }else{
-            return(
-                <div>
-                    <AudioAnalyzer/>
-                </div>
-            )
-        }
     }
 }

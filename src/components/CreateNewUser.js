@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Button from 'react-bootstrap/lib/Button'
 import axios from 'axios'
 
-class CreateNewUser extends Component{
+export default class CreateNewUser extends Component{
     constructor(props){
         super(props)
 
@@ -77,5 +77,3 @@ class CreateNewUser extends Component{
         )
     }
 }
-
-export default CreateNewUser

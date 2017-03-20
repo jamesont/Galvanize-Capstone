@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../App.css'
 import { Button } from 'react-bootstrap'
 
-class SearchBar extends Component {
+export default class SearchBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -14,9 +14,7 @@ class SearchBar extends Component {
 // ///////////work on this later============================
 //   onClick(e){
 //     e.preventDefault()
-//     this.setState({
-//       searched: true
-//     })
+//     this.setState({ searched: true })
 //     axios.post('http://localhost:8000/addArtistInfoToDB', {
 //       first_name: this.state.firstName,
 //       last_name: this.state.lastName,
@@ -32,28 +30,27 @@ class SearchBar extends Component {
 
     render() {
         return (
-
             <div className="search-bar">
             <form className="form-inline"
                 onSubmit={this.props.showArtistTable}>
+
                 <div>
                     <input className="form-control"
-                    onChange={this.props.passSearchInput} 
+                    onChange={this.props.passSearchInput}
                     placeholder="Search for an artist" />
                 </div>
                 <div>
                     <Button
-                    id="searchBarButton"
-                    type="submit"
-                    bsStyle="primary"
-                    className="btn btn-default">Search
+                        id="searchBarButton"
+                        type="submit"
+                        bsStyle="primary"
+                        className="btn btn-default"
+                    >
+                    Search
                     </Button>
                 </div>
                 </form>
             </div>
         )
     }
-
 }
-
-export default SearchBar

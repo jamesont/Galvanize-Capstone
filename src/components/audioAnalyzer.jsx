@@ -1,61 +1,72 @@
 import React, {Component} from "react"
-import { Button } from 'react-bootstrap'
-import SearchBar from '../components/SearchBar'
 import '../App.css'
 
 export default class AudioAnalyzer extends Component {
-  constructor(props){
-    super(props)
-  }
-
-  frameLooper(){
-    let canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, bar_height
-    window.requestAnimationFrame(this.frameLooper)
-    fbc_array = new Uint8Array(analyser.frequencyBinCount)
-    analyser.getByteFrequencyData(fbc_array)
-    ctx.clearRect(0, 0, canvas.width, canvas.height) // Clear the canvas
-    ctx.fillStyle = '#00CCFF' // Color of the bars
-    bars = 100
-    for (let i = 0; i < bars; i++) {
-      bar_x = i * 3
-      bar_width = 2
-      bar_height = -(fbc_array[i] / 2)
-      //  fillRect( x, y, width, height ) // Explanation of the parameters below
-      ctx.fillRect(bar_x, canvas.height, bar_width, bar_height)
+    constructor(props){
+        super(props)
+        this.createVisualization = this.createVisualization.bind(this)
+        console.log(this.props);
     }
-  }
 
-  initMp3Player(){
-    let canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, bar_height
-    let audio = this.refs.audio
-    context = new AudioContext()
-    analyser = context.createAnalyser()
-    canvas = this.refs.analyser
-    ctx = canvas.getContext('2d')
-    source = context.createMediaElementSource(audio)
-    source.connect(analyser)
-  	analyser.connect(context.destination)
-  	this.frameLooper()
-  }
+    componentDidMount(){
+        this.createVisualization()
+    }
 
+    createVisualization(){
+        let context = new AudioContext()
+        let analyser = context.createAnalyser()
+        let canvas = this.refs.analyserCanvas //like doc.getelbyId
+        let ctx = canvas.getContext('2d')
+        let audio = this.refs.audio //like doc.getelbyId
+        audio.crossOrigin = "anonymous"
+        let audioSrc = context.createMediaElementSource(audio)
+        audioSrc.connect(analyser)
+        audioSrc.connect(context.destination)
+        analyser.connect(context.destination)
+        renderFrame()
 
-  render(){
-    return (
-      <div id="mp3_player">
-        <div id="audio_box">
-          <audio
-            refs="audio"
-            autoPlay={true}
-            controls={true}
-            // src={this.props.tracks.preview_url}
-          >
-          </audio>
-        </div>
-        <canvas
-          refs="analyser"
-          id="analyser"></canvas>
-      </div>
-    )
-  }
+        function renderFrame(){
+            let freqData = new Uint8Array(analyser.frequencyBinCount)
+            requestAnimationFrame(renderFrame)
+            analyser.getByteFrequencyData(freqData)
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            console.log(freqData)
+            ctx.fillStyle = '#00CCFF';
+            let bars = 100;
+            for (var i = 0; i < bars; i++) {
+                let bar_x = i * 3;
+                let bar_width = 2;
+                let bar_height = -(freqData[i] / 2);
+                ctx.fillRect(bar_x, canvas.height, bar_width, bar_height)
 
-}
+            }
+        }
+        renderFrame()
+    }
+
+    render(){
+        return (
+            <div>
+                <h2>{this.props.songName}
+                    <h3>{"By: " + this.props.artistName}</h3>
+                </h2>
+
+                <div id="mp3_player">
+                    <div id="audio_box">
+                        <audio
+                            ref="audio"
+                            autoPlay={true}
+                            controls={true}
+                            src={this.props.songUrl}
+                            >
+                            </audio>
+                        </div>
+                        <canvas
+                            ref="analyserCanvas"
+                            id="analyser"></canvas>
+                        </div>
+                    </div>
+                )
+            }
+
+        }

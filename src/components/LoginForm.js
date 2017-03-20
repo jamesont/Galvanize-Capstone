@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import axios from 'axios'
 
 
-class LoginForm extends Component{
+export default class LoginForm extends Component{
     constructor(props){
         super(props)
 
@@ -20,7 +20,7 @@ class LoginForm extends Component{
             email: this.state.email,
             hashed_password: this.state.password
         }).then((res) => {
-            console.log('post response, login form', res)
+            console.log("Post response login form", res);
         }).catch((err) => {
             console.log(err)
         })
@@ -63,5 +63,3 @@ class LoginForm extends Component{
         )
     }
 }
-
-export default LoginForm
