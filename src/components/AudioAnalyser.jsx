@@ -1,5 +1,4 @@
 import React, {Component} from "react"
-// import '../App.css'
 
 export default class AudioAnalyzer extends Component {
   constructor(props){
@@ -9,6 +8,9 @@ export default class AudioAnalyzer extends Component {
   }
 
   componentDidMount(){
+    //after AudioAnalyzer component mounts - or is rendered -
+    //call the createVisualization function to analyze song data and render it
+    //on the canvas tag
     this.createVisualization()
   }
 
@@ -35,19 +37,29 @@ export default class AudioAnalyzer extends Component {
     audioSrc.connect(context.destination)
     analyser.connect(context.destination)
 
-    function renderFrame
-      // creates an array of 8 bit integers
+    function renderFrame(){
+      // creates an array of 8 bit integers that takes in the analyser array data
+      // Uint8Array should be the same length as the frequencyBinCount
       let freqData = new Uint8Array(analyser.frequencyBinCount)
+      // tells browser you want to make an animation that accepts a callback function
+      // updates animation once every second
       requestAnimationFrame(renderFrame)
+      //copies the current frequency data into a Uint8Array (unsigned byte array) passed into it.
       analyser.getByteFrequencyData(freqData)
+      // clears canvas every time render frame is called
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       console.log(freqData)
+      // refills the canvas with a color
       ctx.fillStyle = '#00CCFF';
+      // creates 100 bars in the visualizer
       let bars = 100;
       for (var i = 0; i < bars; i++) {
         let bar_x = i * 3;
         let bar_width = 2;
-        let bar_height = -(freqData[i] / 2);
+        //runs through frequency data and makes the bar height half the
+        //pixels of each element (number) in the freqData array
+        let bar_height = -(freqData[i] / 2)
+        //draws a rectangle whos size is determined by the bar widths and heights
         ctx.fillRect(bar_x, canvas.height, bar_width, bar_height)
       }
     }
