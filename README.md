@@ -12,6 +12,7 @@ of the data.
 
 - HTML5/CSS (Google's Materialize Framework)
   - HTML5 Canvas/Audio tags to render audio visualizations
-- Javascript and Facebook's React library (or is it a framework??)
+- Javascript and Facebook's React (or is it a framework??); Facebook/React boilerplate used
+(apparently makes deployment to heroku easier)
 - Node/Express.js
 - Postgresql
