@@ -46,9 +46,8 @@ export default class AudioAnalyzer extends Component {
   render(){
     return (
       <div>
-        <h2>{this.props.songName}
-          <h3>{"By: " + this.props.artistName}</h3>
-        </h2>
+        <h2>{this.props.songName}</h2>
+        <h3>{"By: " + this.props.artistName}</h3>
         <div id="mp3_player">
           <div id="audio_box">
             <audio
