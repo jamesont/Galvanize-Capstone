@@ -5,7 +5,6 @@ export default class ArtistCard extends Component {
         super(props)
 
         this.state = {
-            // renderAudioAnalyzer: false,
             setPreviewUrl: ''
         }
 
@@ -19,7 +18,6 @@ export default class ArtistCard extends Component {
 
     render() {
         let {tracks} = this.props
-        // if(!this.state.renderAudioAnalyzer){
             return (
                 <div className="card col s3" id="artistCard">
                     <div className="card-inner">
