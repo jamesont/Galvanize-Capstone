@@ -3,7 +3,7 @@ import ArtistCard from './components/ArtistCard'
 import axios from 'axios'
 import CreateNewUser from './components/CreateNewUser'
 import LoginForm from './components/LoginForm'
-import AudioAnalyzer from "./components/AudioAnalyzer"
+import AudioAnalyzer from './components/AudioAnalyzer'
 import logo from './logo.svg'
 import React, { Component } from 'react'
 import SearchBar from './components/SearchBar'
