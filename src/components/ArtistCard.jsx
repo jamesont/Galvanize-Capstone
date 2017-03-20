@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import AudioAnalyzer from "./AudioAnalyzer"
 
 export default class ArtistCard extends Component {
     constructor(props){
