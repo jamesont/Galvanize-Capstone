@@ -30,6 +30,8 @@ of the data.
   - main issue was the renaming of a file that was not tracked by git for some reason
 5) CORS access restriction while trying to feed music data through audio tag
   - solved by adding the line `audio.crossOrigin = "anonymous"`
+6) Trying to use various NPM packages to create an audio visualizer
+  - ended up using a simple example from the internet
 
 #Things to add/work on/update (Somewhat in order of importance)
 
